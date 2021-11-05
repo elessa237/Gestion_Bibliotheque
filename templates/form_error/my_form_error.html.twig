@@ -1,0 +1,23 @@
+{% use "bootstrap_base_layout.html.twig" %}
+
+{% block widget_attributes -%}
+{%- if not valid -%}
+{% set attr = attr|merge({class: (attr.class|default('') ~ ' is-invalid')|trim}) %}
+{%- endif -%}
+{{ parent() }}
+{%- endblock widget_attributes %}
+
+{# Errors #}
+
+{% block form_errors -%}
+{%- if errors|length > 0 -%}
+<span class="{% if form is not rootform %}invalid-feedback{% else %}alert alert-danger{% endif %} d-block">
+    {%- for error in errors -%}
+    <span class="d-block mb-2">
+        <span class="form-error-icon badge badge-danger text-uppercase">Erreur </span>
+        <span class="form-error-message">{{ error.message }}</span>
+    </span>
+    {%- endfor -%}
+</span>
+{%- endif %}
+{%- endblock form_errors %}

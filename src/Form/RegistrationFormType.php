@@ -24,15 +24,6 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'label' => false,
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accepter les termes d\'utilisation',
-                    ]),
-                ],
-            ])
             ->add('password', PasswordType::class, [
                 'label' => false,
                 'attr' => [
@@ -41,7 +32,6 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('confirm', PasswordType::class, [
                 'label' => false,
-                'mapped' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]

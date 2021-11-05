@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -24,11 +25,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank(message="Vous devez renseigner ce champ")
+     * @Assert\Email(message="L'e-mail {{ value }} n'est pas valide")
      */
     private string $email;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Vous devez renseigner ce champ")
+     * @Assert\Length(min=5, max=255, minMessage="nom d'utilisateur trop court", maxMessage="nom d'utilisateur trop long")
      */
     private string $username;
 
@@ -40,11 +45,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank(message="Vous devez renseigner ce champ")
+     * @Assert\Regex(pattern="/^[a-zA-Z0-9]{8,}$/", message="8 caractères au minimum")
      */
     private string $password;
 
     /**
+     * @Assert\EqualTo(propertyPath="password", message="Les mots de passes saisie ne sont pas identique")
+     */
+    private string $confirm;
+
+    /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Vous devez renseigner ce champ")
+     * @Assert\Regex(pattern="/^6[5-9][0-9]{7}$/", message="numero de telephone non valide")
      */
     private string $number;
 
@@ -132,6 +146,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function setConfirm(string $confirm): self
+    {
+        $this->confirm = $confirm;
+
+        return $this;
+    }
+
+    public function getConfirm(): string
+    {
+        return $this->confirm;
+    }
 
     public function getNumber(): ?string
     {
