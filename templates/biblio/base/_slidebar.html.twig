@@ -3,12 +3,21 @@
 		<div id="sidebar-menu" class="sidebar-menu">
 			<ul>
 				<li class="menu-title">
-					<span>Employees</span>
+					<span>Your libraries</span>
 				</li>
+				{% if is_granted('ROLE_ADMIN') %}
+					<li>
+						<a href="#">
+							<i class="la la-file-text"></i>
+							<span>Publier un document</span>
+						</a>
+					</li>
+				{% endif %}
+
 				<li>
-					<a href="clients.html">
+					<a href="{{path('biblio_home')}}">
 						<i class="la la-users"></i>
-						<span>Clients</span>
+						<span>Documents</span>
 					</a>
 				</li>
 			</ul>
