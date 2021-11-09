@@ -1,0 +1,36 @@
+{% extends 'biblio/base/base.html.twig' %}
+
+{% block title %}Hello
+{% endblock %}
+
+{% block body %}
+	<div
+		class="content container-fluid">
+
+		<!-- Page Header -->
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-9">
+					<h3 class="page-title">Documents</h3>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('biblio_home')}}">Documents</a>
+						</li>
+						<li class="breadcrumb-item active">Admin</li>
+						<li class="breadcrumb-item active">Documents</li>
+						<li class="breadcrumb-item active">New</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Header -->
+
+		<h1>Creer un nouveau document</h1>
+	</div>
+
+
+	{{ include('biblio/admin/document/_form.html.twig') }}
+
+	<a class="btn btn-secondary mx-3" href="{{ path('admin_document_index') }}">back to list</a>
+{% endblock %}

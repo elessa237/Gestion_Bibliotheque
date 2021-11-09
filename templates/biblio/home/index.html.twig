@@ -1,12 +1,9 @@
 {% extends 'biblio/base/base.html.twig' %}
 
-{% block title %}Hello{% endblock %}
+{% block title %}Hello
+{% endblock %}
 
 {% block body %}
-<!-- Page Wrapper -->
-<div
-	class="page-wrapper">
-
 	<!-- Page Content -->
 	<div
 		class="content container-fluid">
@@ -28,12 +25,23 @@
 		<!-- /Page Header -->
 
 		<!-- Content Starts -->
+		<div class="row">
+			<div class="col-12 col-md-6 col-lg-4 d-flex">
+				<div class="card flex-fill">
+					<img alt="" src="{{'/img/img-pdf.png'}}" class="card-img-top">
+					<div class="card-header">
+						<h5 class="card-title mb-0">Card with image and list</h5>
+					</div>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item">Cras justo odio</li>
+						<li class="list-group-item">Dapibus ac facilisis in</li>
+						<li class="list-group-item">Vestibulum at eros</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 		<!-- /Content End -->
-
 	</div>
 	<!-- /Page Content -->
-
-</div>
-<!-- /Page Wrapper -->
 
 {% endblock %}

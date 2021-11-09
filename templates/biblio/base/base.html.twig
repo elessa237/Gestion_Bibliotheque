@@ -17,11 +17,14 @@
 	</head>
 	<body>
 		<div class="main-wrapper">
-			{% include "biblio/base/_header.html.twig" %}
-			{% include "biblio/base/_slidebar.html.twig" %}
+			<div class="page-wrapper">
 
-			{% block body %}{% endblock %}
 
+				{% include "biblio/base/_header.html.twig" %}
+				{% include "biblio/base/_slidebar.html.twig" %}
+
+				{% block body %}{% endblock %}
+			</div>
 		</div>
 
 		{% block javascripts %}

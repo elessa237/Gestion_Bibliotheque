@@ -1,0 +1,67 @@
+{% extends 'biblio/base/base.html.twig' %}
+
+{% block title %}Hello
+{% endblock %}
+
+{% block body %}
+
+	<!-- Page Content -->
+	<div
+		class="content container-fluid">
+
+		<!-- Page Header -->
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-9">
+					<h3 class="page-title">Documents</h3>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item">
+							<a href="{{path('biblio_home')}}">Documents</a>
+						</li>
+						<li class="breadcrumb-item active">Admin</li>
+						<li class="breadcrumb-item active">Documents</li>
+						<li class="breadcrumb-item active">Index</li>
+
+					</ul>
+				</div>
+				<div class="col-sm-3 float-end">
+					<a href="{{path("admin_document_new")}}" class="btn btn-primary">nouveau Document</a>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Header -->
+
+		<h1>Acceuil</h1>
+	</div>
+
+	<div class="container-fluid">
+		<table class="table">
+			<thead>
+				<tr class="text-center">
+
+					<th>Nom</th>
+					<th>Taille du fichier</th>
+					<th>Cree le</th>
+					<th>actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for document in documents %}
+					<tr class="text-center">
+						<td>{{ document.name }}</td>
+						<td>{{ document.convertedSize }}
+							Mo</td>
+						<td>{{ document.createdAt ? document.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>
+							<a class="btn btn-danger" href="{{ path('admin_document_edit', {'id': document.id}) }}">Editer</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="6">Aucun documents trouvé</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
