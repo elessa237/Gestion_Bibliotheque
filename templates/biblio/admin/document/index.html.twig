@@ -51,7 +51,7 @@
 						<td>{{ document.name }}</td>
 						<td>{{ document.convertedSize }}
 							Mo</td>
-						<td>{{ document.createdAt ? document.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ document.createdAt|date('Y-m-d à H:i:s') }}</td>
 						<td>
 							<a class="btn btn-danger" href="{{ path('admin_document_edit', {'id': document.id}) }}">Editer</a>
 						</td>

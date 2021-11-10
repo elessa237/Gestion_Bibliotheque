@@ -32,16 +32,29 @@
 						<img alt="" src="{{'/img/img-pdf.png'|imagine_filter('my_thumb')}}" class="card-img-top">
 
 						<div class="card-header">
-							<h5 class="card-title mb-0">Card with image and list</h5>
+							<h5 class="card-title mb-0">{{document.name}}
+							</h5>
 						</div>
 						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
+							<li class="list-group-item">Ajoutée le :
+								{{document.createdAt|date('d-m-Y')}}
+								par
+								{{document.user}}</li>
+							<li class="list-group-item">
+								{% if app.user %}
+									<a href="{{vich_uploader_asset(document, 'docFile')}}" download>Telecharger</a>
+									<small class="float-end">({{document.convertedSize}} Mo)</small>
+
+								{% else %}
+									vous souhaitez Telecharger?
+									<a href="{{path('login')}}">Connectez-vous</a>
+								{% endif %}
+
+							</li>
+
 						</ul>
 					</div>
 				</div>
-
 			{% endfor %}
 		</div>
 		<!-- /Content End -->
