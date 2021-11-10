@@ -19,13 +19,18 @@ class HomeController extends AbstractController
         Request $request,
         PaginatorInterface $pagination
     ): Response {
+
+
         $documents = $pagination->paginate(
             $document->findAll(),
             $request->query->getInt('page', 1),
             3
         );
+
+
         return $this->render('biblio/home/index.html.twig', [
             'documents' => $documents,
         ]);
     }
+    
 }
