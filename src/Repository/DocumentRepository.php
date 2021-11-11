@@ -2,9 +2,11 @@
 
 namespace App\Repository;
 
-use App\Entity\Document;
+use App\Entity\Documents\Document;
+use App\Entity\Documents\DocumentSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use function Symfony\Component\String\u;
 
 /**
  * @method Document|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,23 +21,49 @@ class DocumentRepository extends ServiceEntityRepository
         parent::__construct($registry, Document::class);
     }
 
-    // /**
-    //  * @return Document[] Returns an array of Document objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Document[] Returns an array of Document objects
+     */
+    public function findLastTree()
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('d.createdAt', 'DESC')
+            ->setMaxResults(4)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
+    /**
+     * @return Document[] Returns an array of Document objects
+     */
+    public function findAllDocuments(DocumentSearch $search)
+    {
+        $searchTerms = $this->extractSearchTerms($search);
+
+        $query = $this->createQueryBuilder('d');
+
+        if ($search->getSearch()) {
+
+            foreach ($searchTerms as $key => $term) {
+                $query = $query
+                    ->orWhere('d.name LIKE :t_' . $key)
+                    ->setParameter('t_' . $key, '%' . $term . '%');
+            }
+
+        }
+
+        return $query->getQuery()
+            ->getResult();
+    }
+
+    private function extractSearchTerms(string $searchQuery): array
+    {
+        $searchQuery = u($searchQuery)->replaceMatches('/[[:space:]]+/', ' ')->trim();
+        $terms = array_unique($searchQuery->split(' '));
+
+        // ignore the search terms that are too short
+        return $terms;
+    }
     /*
     public function findOneBySomeField($value): ?Document
     {

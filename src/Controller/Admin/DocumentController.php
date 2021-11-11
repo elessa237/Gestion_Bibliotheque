@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Document;
+use App\Entity\Documents\Document;
 use App\Form\DocumentType;
 use App\Repository\DocumentRepository;
 use Doctrine\ORM\EntityManagerInterface;
