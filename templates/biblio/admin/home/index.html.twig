@@ -1,0 +1,141 @@
+{% extends "biblio/base/base.html.twig" %}
+
+{% block body %}
+
+	<div class="content container-fluid">
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3 class="page-title">Bienvenue
+						{{app.user.username}}</h3>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item active">Dashboard</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon">
+							<i class="fa fa-cubes"></i>
+						</span>
+						<div class="dash-widget-info">
+							<h3>{{documents|length}}</h3>
+							<span>Livres</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+				<div class="card dash-widget">
+					<div class="card-body">
+						<span class="dash-widget-icon">
+							<i class="fa fa-user"></i>
+						</span>
+						<div class="dash-widget-info">
+							<h3>{{users|length}}</h3>
+							<span>Utilisateurs</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 d-flex">
+				<div class="card card-table flex-fill">
+					<div class="card-header">
+						<h3 class="card-title mb-0">Documents recents</h3>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table custom-table mb-0">
+								<thead>
+									<tr>
+										<th>Nom
+										</th>
+										<th>Taille</th>
+										<th class="text-right">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for document in lastDocuments %}
+										<tr>
+											<td>
+												<h2>
+													{{document.name}}
+												</h2>
+												<small class="block text-ellipsis">
+													<span class="text-muted">le
+														{{document.createdAt|date("d/m/Y")}},
+													</span>
+													<span class="text-muted">par
+														{{document.user}}</span>
+												</small>
+											</td>
+											<td>{{document.convertedSize}}
+												Mo</td>
+											<td class="text-right">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+														<i class="material-icons">more_vert</i>
+													</a>
+													<div class="dropdown-menu dropdown-menu-right" style="">
+														<a class="dropdown-item" href="{{path('admin_document_edit', {id: document.id})}}">
+															<i class="fa fa-pencil m-r-5"></i>
+															Modifier</a>
+													</div>
+												</td>
+											</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer">
+						<a href="projects.html">Voir tout les documents</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-6 d-flex">
+				<div class="card card-table flex-fill">
+					<div class="card-header">
+						<h3 class="card-title mb-0">Clients</h3>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table custom-table mb-0">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Email</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for user in lastUsers %}
+										<tr>
+											<td>
+												<h2 class="table-avatar">
+													<span class="avatar"></span>
+													{{user.username}}
+												</h2>
+											</td>
+											<td>{{user.email}}</td>
+										</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer">
+						<a href="#">Voir tout les utilisateurs</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

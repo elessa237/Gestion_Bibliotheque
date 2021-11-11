@@ -31,7 +31,7 @@ class HomeController extends AbstractController
 
         return $this->render('biblio/home/index.html.twig', [
             'documents' => $documents,
-            'LastDocuments' => $document->findLastTree(),
+            'LastDocuments' => $document->findLastFour(),
         ]);
     }
     

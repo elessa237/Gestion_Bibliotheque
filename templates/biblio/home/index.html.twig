@@ -34,10 +34,10 @@
 										<i class="fa fa-bars"></i>
 									</a>
 								</div>
-								<span>Espace Bibliotheque {% if not app.user %}<small><a href="{{path('login')}}" >Connectez-vous</a> pour effectuer des telechargements</small>{% endif %}
+								<span>Espace Bibliotheque{% if not app.user %}. <small><a href="{{path('login')}}" >Connectez-vous</a> pour effectuer des telechargements</small>{% endif %}
 								</span>
 								<div class="file-options">
-									<span class="btn-file"><input type="file" class="upload"><i class="fa fa-upload"></i>
+									<span class="btn-file"><i class="fa fa-download"></i>
 									</span>
 								</div>
 							</div>

@@ -23,7 +23,7 @@ class DocumentRepository extends ServiceEntityRepository
     /**
      * @return Document[] Returns an array of Document objects
      */
-    public function findLastTree()
+    public function findLastFour()
     {
         return $this->createQueryBuilder('d')
             ->orderBy('d.createdAt', 'DESC')
