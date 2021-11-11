@@ -2,8 +2,6 @@
 
 namespace App\Controller\Biblio;
 
-use App\Entity\Documents\DocumentSearch;
-use App\Form\DocumentSearchType;
 use App\Repository\DocumentRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,18 +20,7 @@ class HomeController extends AbstractController
         PaginatorInterface $pagination
     ): Response {
 
-        $search = new DocumentSearch();
-
-        $form = $this->createForm(DocumentSearchType::class, $search, [
-            'attr' => [
-                'class' => 'file-search'
-            ]
-        ]);
-        $form->handleRequest($request);
-        
-        // if ($form->isSubmitted() && $form->isValid()) { 
-            
-        // }
+        $search = $request->get('search', '');
 
         $documents = $pagination->paginate(
             $document->findAllDocuments($search),
@@ -45,7 +32,6 @@ class HomeController extends AbstractController
         return $this->render('biblio/home/index.html.twig', [
             'documents' => $documents,
             'LastDocuments' => $document->findLastTree(),
-            'form' => $form->createView(),
         ]);
     }
     

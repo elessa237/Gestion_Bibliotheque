@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Documents\Document;
-use App\Entity\Documents\DocumentSearch;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use function Symfony\Component\String\u;
@@ -36,13 +35,14 @@ class DocumentRepository extends ServiceEntityRepository
     /**
      * @return Document[] Returns an array of Document objects
      */
-    public function findAllDocuments(DocumentSearch $search)
+    public function findAllDocuments(string $search)
     {
-        $searchTerms = $this->extractSearchTerms($search);
 
         $query = $this->createQueryBuilder('d');
 
-        if ($search->getSearch()) {
+        if ($search) {
+            
+            $searchTerms = $this->extractSearchTerms($search);
 
             foreach ($searchTerms as $key => $term) {
                 $query = $query

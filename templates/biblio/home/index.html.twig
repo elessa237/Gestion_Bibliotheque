@@ -34,22 +34,23 @@
 										<i class="fa fa-bars"></i>
 									</a>
 								</div>
-								<span>Espace Bibliotheque</span>
+								<span>Espace Bibliotheque {% if not app.user %}<small><a href="{{path('login')}}" >Connectez-vous</a> pour effectuer des telechargements</small>{% endif %}
+								</span>
 								<div class="file-options">
 									<span class="btn-file"><input type="file" class="upload"><i class="fa fa-upload"></i>
 									</span>
 								</div>
 							</div>
 							<div class="file-content">
-								{{form_start(form)}}
-								<div class="input-group">
-									<div class="input-group-prepend">
-										<i class="fa fa-search"></i>
+								<form class="file-search" method="get">
+									<div class="input-group">
+										<div class="input-group-prepend">
+											<i class="fa fa-search"></i>
+										</div>
+										<input type="text" class="form-control" name="search" placeholder="Search">
+										<button class="btn add-btn mx-2" type="submit">rechercher</button>
 									</div>
-									{{form_widget(form.search)}}
-									<button type="submit" class="btn add-btn">Rechercher</button>
-								</div>
-								{{form_end(form)}}
+								</form>
 								<div class="file-body">
 									<div class="file-content-inner">
 										<h4>Documents récents</h4>
@@ -57,9 +58,17 @@
 											{% for document in LastDocuments %}
 												<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
 													<div class="card card-file">
-														<div class="dropdown-file">
-															<a href="" class="download"></a>
-														</div>
+														{% if app.user %}
+															<div class="dropdown-file">
+																<a href="" class="dropdown-link" data-toggle="dropdown">
+																	<i class="fa fa-ellipsis-v"></i>
+																</a>
+																<div class="dropdown-menu dropdown-menu-right">
+																	<a href="{{vich_uploader_asset(document, 'docFile')}}" download class="dropdown-item">Telecharger</a>
+																</div>
+															</div>
+														{% endif %}
+
 														<div class="card-file-thumb">
 															<i class="fa fa-file-pdf-o"></i>
 														</div>
@@ -84,9 +93,17 @@
 											{% for document in documents %}
 												<div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3">
 													<div class="card card-file">
-														<div class="dropdown-file">
-															<a href="" class="download"></a>
-														</div>
+														{% if app.user %}
+															<div class="dropdown-file">
+																<a href="" class="dropdown-link" data-toggle="dropdown">
+																	<i class="fa fa-ellipsis-v"></i>
+																</a>
+																<div class="dropdown-menu dropdown-menu-right">
+																	<a href="{{vich_uploader_asset(document, 'docFile')}}" download class="dropdown-item">Telecharger</a>
+																</div>
+															</div>
+														{% endif %}
+
 														<div class="card-file-thumb">
 															<i class="fa fa-file-pdf-o"></i>
 														</div>
