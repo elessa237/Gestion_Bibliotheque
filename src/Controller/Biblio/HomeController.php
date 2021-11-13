@@ -9,6 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @author Maxime Elessa <elessamaxime@icloud.com>
+ * @package App\Controller\Biblio
+ */
 class HomeController extends AbstractController
 {
     /**
@@ -20,16 +24,18 @@ class HomeController extends AbstractController
         PaginatorInterface $pagination
     ): Response {
 
+        $search = $request->get('search', '');
 
         $documents = $pagination->paginate(
-            $document->findAll(),
+            $document->findAllDocuments($search),
             $request->query->getInt('page', 1),
-            3
+            10
         );
 
 
         return $this->render('biblio/home/index.html.twig', [
             'documents' => $documents,
+            'LastDocuments' => $document->findLastFour(),
         ]);
     }
     

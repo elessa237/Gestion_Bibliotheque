@@ -3,15 +3,24 @@
 		<div id="sidebar-menu" class="sidebar-menu">
 			<ul>
 				<li class="menu-title">
-					<span>Your libraries</span>
+					<span>Votre librairie</span>
 				</li>
 				{% if is_granted('ROLE_ADMIN') %}
-					<li>
-						<a href="{{path('admin_document_index')}}">
-
-							<i class="la la-file-text"></i>
-							<span>Admin Biblio</span>
+					<li class="submenu">
+						<a href="#" class="">
+							<i class="la la-dashboard"></i>
+							<span>
+								Dashboard</span>
+							<span class="menu-arrow"></span>
 						</a>
+						<ul style="display: none;">
+							<li>
+								<a href="{{path('home_admin')}}">Acceuil</a>
+							</li>
+							<li>
+								<a href="{{path('admin_document_index')}}">App</a>
+							</li>
+						</ul>
 					</li>
 				{% endif %}
 

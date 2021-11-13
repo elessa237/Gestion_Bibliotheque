@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Documents;
 
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\DocumentRepository;
 use Symfony\Component\HttpFoundation\File\File;
@@ -10,6 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=DocumentRepository::class)
  * @Vich\Uploadable
+ * @author Maxime Elessa <elessamaxime@icloud.com>
+ * @package App\Entity\Documents
  */
 class Document
 {

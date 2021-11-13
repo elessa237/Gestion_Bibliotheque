@@ -2,7 +2,7 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Document;
+use App\Entity\Documents\Document;
 use App\Form\DocumentType;
 use App\Repository\DocumentRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,6 +13,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
+ * @author Maxime Elessa <elessamaxime@icloud.com>
+ * @package App\Controller\Admin
  * @IsGranted("ROLE_ADMIN")
  * @Route("/biblio/admin/document")
  */
