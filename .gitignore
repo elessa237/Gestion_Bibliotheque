@@ -28,7 +28,9 @@ yarn-error.log
 
 ###> data ###
 /data/
+/public/documents/
 ###< data ###
+
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
