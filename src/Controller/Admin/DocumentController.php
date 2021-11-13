@@ -13,6 +13,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
+ * @author Maxime Elessa <elessamaxime@icloud.com>
+ * @package App\Controller\Admin
  * @IsGranted("ROLE_ADMIN")
  * @Route("/biblio/admin/document")
  */

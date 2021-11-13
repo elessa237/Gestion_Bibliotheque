@@ -9,6 +9,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @author Maxime Elessa <elessamaxime@icloud.com>
+ * @package App\Controller\Biblio
+ */
 class HomeController extends AbstractController
 {
     /**

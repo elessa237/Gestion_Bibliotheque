@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="file-wrap file-sidebar-toggle">
-					<div class="file-sidebar">
+					{# <div class="file-sidebar">
 						<div class="file-header justify-content-center">
 							<span>Filtre</span>
 							<a href="javascript:void(0);" class="file-side-close">
@@ -25,15 +25,15 @@
 								</ul>
 							</div>
 						</div>
-					</div>
+					</div> #}
 					<div class="file-cont-wrap  {% if documents|length < 8 %}container{% endif %}">
 						<div class="file-cont-inner">
 							<div class="file-cont-header">
-								<div class="file-options">
+								{# <div class="file-options">
 									<a href="javascript:void(0)" id="file_sidebar_toggle" class="file-sidebar-toggle">
 										<i class="fa fa-bars"></i>
 									</a>
-								</div>
+								</div> #}
 								<span>Espace Bibliotheque{% if not app.user %}. <small><a href="{{path('login')}}" >Connectez-vous</a> pour effectuer des telechargements</small>{% endif %}
 								</span>
 								<div class="file-options">

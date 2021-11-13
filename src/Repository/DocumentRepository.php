@@ -8,6 +8,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use function Symfony\Component\String\u;
 
 /**
+ * @author Maxime Elessa <elessamaxime@icloud.com>
+ * @package App\Repository
  * @method Document|null find($id, $lockMode = null, $lockVersion = null)
  * @method Document|null findOneBy(array $criteria, array $orderBy = null)
  * @method Document[]    findAll()

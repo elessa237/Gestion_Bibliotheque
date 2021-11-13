@@ -11,6 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @author Maxime Elessa <elessamaxime@icloud.com>
+ * @package App\Controller\Security
+ */
 class RegistrationController extends AbstractController
 {
     /**

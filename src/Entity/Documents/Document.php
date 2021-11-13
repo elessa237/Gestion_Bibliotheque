@@ -11,6 +11,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=DocumentRepository::class)
  * @Vich\Uploadable
+ * @author Maxime Elessa <elessamaxime@icloud.com>
+ * @package App\Entity\Documents
  */
 class Document
 {
