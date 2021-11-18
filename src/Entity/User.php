@@ -80,7 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=Document::class, mappedBy="user")
      */
-    private $document;
+    private Collection $document;
 
     public function __construct()
     {

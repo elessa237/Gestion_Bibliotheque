@@ -3,9 +3,11 @@
 namespace App\Entity\Documents;
 
 use App\Entity\User;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\DocumentRepository;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
@@ -65,18 +67,18 @@ class Document
     /**
      * @ORM\Column(type="datetime_immutable")
      *
-     * @var \DateTimeImmutable
+     * @var DateTimeImmutable
      */
-    private \DateTimeImmutable $createdAt;
+    private DateTimeImmutable $createdAt;
 
     /**
      * @ORM\Column(type="datetime_immutable", nullable=true)
      */
-    private $updatedAt;
+    private ?DateTimeImmutable $updatedAt;
 
     public function __construct()
     {
-        $this->createdAt = new \DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
     }
 
 
@@ -95,14 +97,14 @@ class Document
      * must be able to accept an instance of 'File' as the bundle will inject one here
      * during Doctrine hydration.
      *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $docFile
+     * @param File|UploadedFile|null $docFile
      */
     public function setDocFile(?File $docFile = null): void
     {
         $this->docFile = $docFile;
 
         if (null !== $docFile) {
-            $this->updatedAt = new \DateTimeImmutable('now');
+            $this->updatedAt = new DateTimeImmutable('now');
         }
     }
 
@@ -116,17 +118,17 @@ class Document
         $this->docName = $docName;
     }
 
-    public function getdocName(): ?string
+    public function getDocName(): ?string
     {
         return $this->docName;
     }
 
-    public function setdocSize(?int $docSize): void
+    public function setDocSize(?int $docSize): void
     {
         $this->docSize = $docSize;
     }
 
-    public function getdocSize(): ?int
+    public function getDocSize(): ?int
     {
         return $this->docSize;
     }
@@ -138,6 +140,7 @@ class Document
 
     public function setUser(?User $user): self
     {
+        /** @var User $user */
         $this->user = $user;
 
         return $this;
@@ -146,9 +149,9 @@ class Document
     /**
      * Get the value of createdAt
      *
-     * @return  \DateTimeImmutable
+     * @return  DateTimeImmutable
      */
-    public function getCreatedAt() : \DateTimeImmutable
+    public function getCreatedAt() : DateTimeImmutable
     {
         return $this->createdAt;
     }
@@ -156,11 +159,11 @@ class Document
     /**
      * Set the value of createdAt
      *
-     * @param  \DateTimeImmutable  $createdAt
+     * @param  DateTimeImmutable  $createdAt
      *
      * @return  self
      */
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
 
@@ -191,12 +194,12 @@ class Document
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeImmutable
+    public function getUpdatedAt(): ?DateTimeImmutable
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -205,7 +208,6 @@ class Document
 
     public function getConvertedSize() : float
     {
-        $size = round(($this->getdocSize() * 0.000000953674316),2);
-        return $size;
+        return round(($this->getdocSize() * 0.000000953674316),2);
     }
 }
