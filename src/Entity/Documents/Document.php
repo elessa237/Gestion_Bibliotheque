@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\DocumentRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
@@ -22,18 +23,21 @@ class Document
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"Doc:read"})
      */
     private int $id;
 
     /**
      * @ORM\Column(type="string")
      * @var string
+     * @Groups({"Doc:read"})
      */
     private string $name;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="document")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"Doc:read"})
      */
     private User $user;
 
@@ -53,6 +57,7 @@ class Document
      * @ORM\Column(type="string")
      *
      * @var string|null
+     * @Groups({"Doc:read"})
      */
     private ?string $docName = null;
 
@@ -60,6 +65,7 @@ class Document
      * @ORM\Column(type="integer")
      *
      * @var int|null
+     * @Groups({"Doc:read"})
      */
     private ?int $docSize;
 
@@ -68,6 +74,7 @@ class Document
      * @ORM\Column(type="datetime_immutable")
      *
      * @var DateTimeImmutable
+     * @Groups({"Doc:read"})
      */
     private DateTimeImmutable $createdAt;
 

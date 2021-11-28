@@ -14,4 +14,7 @@ import './js/biblio';
 
 import './styles/app.css';
 
+import App from "./js/react/App";
 
+const domContainer = document.querySelector('#react');
+render(<App />, domContainer);

@@ -7,6 +7,7 @@ use App\Entity\Documents\Document;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -39,6 +40,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message="Vous devez renseigner ce champ")
      * @Assert\Length(min=5, max=255, minMessage="nom d'utilisateur trop court", maxMessage="nom d'utilisateur trop long")
+     * @Groups({"Doc:read"})
      */
     private string $username;
 

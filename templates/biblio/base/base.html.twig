@@ -1,35 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-
-
-		<title>
-			{% block title %}Welcome!
-			{% endblock %}
-		</title>
-
+		<title>{% block title %}Welcome!{% endblock %}</title>
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
-
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
 	</head>
 	<body>
 		<div class="main-wrapper">
 			<div class="page-wrapper">
 
-
 				{% include "biblio/base/_header.html.twig" %}
 				{% include "biblio/base/_slidebar.html.twig" %}
 
-				{% block body %}{% endblock %}
+				{% block body %}
+
+				{% endblock %}
 			</div>
 		</div>
-
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-
 	</body>
 </html>
